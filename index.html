@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Гран-при Нидерландов 2025 | Формула-1</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_v2.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -20,8 +20,14 @@
                     <ul class="nav-list">
                         <li><a href="#home" class="nav-link">Главная</a></li>
                         <li><a href="#drivers" class="nav-link">Гонщики</a></li>
+                        <li><a href="#betting" class="nav-link">Ставки</a></li>
                         <li><a href="#experts" class="nav-link">Эксперты</a></li>
                     </ul>
+                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </nav>
             </div>
         </div>
@@ -54,6 +60,10 @@
                         <span class="stat-label">км общая дистанция</span>
                     </div>
                 </div>
+                <button class="live-stream-btn" onclick="showLiveStream()">
+                    <i class="fas fa-play"></i>
+                    Смотреть Прямую Трансляцию
+                </button>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -179,6 +189,57 @@
         </div>
     </section>
 
+    <!-- Betting Section -->
+    <section id="betting" class="betting">
+        <div class="container">
+            <h2 class="section-title">Ставки на События</h2>
+            <p class="section-subtitle">Сделайте ставку на ключевые события гонки</p>
+            
+            <div class="betting-grid">
+                <div class="betting-card safety-car-card">
+                    <div class="betting-image">
+                        <img src="/home/ubuntu/upload/search_images/HY60pFtjD10r.jpeg" alt="Safety Car в дождливую погоду">
+                        <div class="weather-overlay">
+                            <i class="fas fa-cloud-rain"></i>
+                            <span>Дождливая погода</span>
+                        </div>
+                    </div>
+                    <div class="betting-content">
+                        <h3 class="betting-title">Выход Сейфти-Кара</h3>
+                        <p class="betting-description">
+                            Будет ли выход машины безопасности во время гонки? 
+                            Дождливая погода и сложная трасса Зандворт увеличивают вероятность инцидентов.
+                        </p>
+                        <div class="betting-odds">
+                            <div class="odds-option" onclick="placeBet('safety-car', 'yes')">
+                                <span class="odds-label">ДА</span>
+                                <span class="odds-value">1.85</span>
+                            </div>
+                            <div class="odds-option" onclick="placeBet('safety-car', 'no')">
+                                <span class="odds-label">НЕТ</span>
+                                <span class="odds-value">2.10</span>
+                            </div>
+                        </div>
+                        <div class="weather-info">
+                            <div class="weather-item">
+                                <i class="fas fa-thermometer-half"></i>
+                                <span>18°C</span>
+                            </div>
+                            <div class="weather-item">
+                                <i class="fas fa-eye"></i>
+                                <span>Видимость: 5км</span>
+                            </div>
+                            <div class="weather-item">
+                                <i class="fas fa-wind"></i>
+                                <span>Ветер: 15 км/ч</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Expert Opinions Section -->
     <section id="experts" class="experts">
         <div class="container">
@@ -228,13 +289,16 @@
                     <ul>
                         <li><a href="#home">Главная</a></li>
                         <li><a href="#drivers">Гонщики</a></li>
+                        <li><a href="#betting">Ставки</a></li>
                         <li><a href="#experts">Эксперты</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Следите за нами</h4>
                     <div class="social-links">
-                        <a href="https://t.me/+fytZa5svbPgyMzJi" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="https://t.me/+fytZa5svbPgyMzJi" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-telegram"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -244,10 +308,58 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Live Stream Modal -->
+    <div id="liveStreamModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLiveStream()">&times;</span>
+            <div class="stream-container">
+                <div class="stream-preview">
+                    <img src="/home/ubuntu/upload/search_images/uwXFf5RzsCq8.png" alt="F1 Live Stream">
+                    <div class="play-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="stream-info">
+                        <h3>Прямая Трансляция</h3>
+                        <p>Гран-при Нидерландов 2025</p>
+                        <span class="live-indicator">🔴 LIVE</span>
+                    </div>
+                </div>
+                <div class="access-message">
+                    <h3>🏁 Получите доступ к трансляции!</h3>
+                    <p>Чтобы смотреть прямую трансляцию гонки, поддержите любого из наших гонщиков ставкой.</p>
+                    <div class="quick-support-buttons">
+                        <button onclick="supportDriver('norris')" class="quick-support-btn norris">
+                            Поддержать Норриса
+                        </button>
+                        <button onclick="supportDriver('leclerc')" class="quick-support-btn leclerc">
+                            Поддержать Леклера
+                        </button>
+                        <button onclick="supportDriver('verstappen')" class="quick-support-btn verstappen">
+                            Поддержать Ферстаппена
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Betting Modal -->
+    <div id="bettingModal" class="modal">
+        <div class="modal-content betting-modal-content">
+            <span class="close" onclick="closeBettingModal()">&times;</span>
+            <div class="betting-form">
+                <h3>Сделать Ставку</h3>
+                <div id="bettingDetails"></div>
+                <button class="confirm-bet-btn" onclick="confirmBet()">
+                    Подтвердить Ставку
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script_v2.js"></script>
 </body>
 </html>
-
 
 
 
