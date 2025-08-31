@@ -63,6 +63,7 @@ body {
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
+    padding: 0.5rem 0;
 }
 
 .nav-link:hover {
@@ -82,6 +83,24 @@ body {
 
 .nav-link:hover::after {
     width: 100%;
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.mobile-menu-btn span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 3px 0;
+    transition: 0.3s;
 }
 
 /* Hero Section */
@@ -133,7 +152,7 @@ body {
 
 .hero-title {
     font-family: 'Orbitron', monospace;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 8vw, 6rem);
     font-weight: 900;
     color: #fff;
     margin-bottom: 1rem;
@@ -160,7 +179,7 @@ body {
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
     color: #ccc;
     margin-bottom: 3rem;
     animation: fadeIn 1s ease-out 0.8s forwards;
@@ -174,29 +193,54 @@ body {
 .hero-stats {
     display: flex;
     justify-content: center;
-    gap: 4rem;
+    gap: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 3rem;
     animation: fadeIn 1s ease-out 1s forwards;
     opacity: 0;
+    flex-wrap: wrap;
 }
 
 .stat {
     text-align: center;
+    min-width: 120px;
 }
 
 .stat-number {
     display: block;
     font-family: 'Orbitron', monospace;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 700;
     color: #ff6b35;
     margin-bottom: 0.5rem;
 }
 
 .stat-label {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
     color: #ccc;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.live-stream-btn {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease-out 1.2s forwards;
+    opacity: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.live-stream-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
 }
 
 .scroll-indicator {
@@ -240,7 +284,7 @@ body {
 
 .section-title {
     font-family: 'Orbitron', monospace;
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
     text-align: center;
     margin-bottom: 1rem;
@@ -251,15 +295,15 @@ body {
 
 .section-subtitle {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     color: #666;
     margin-bottom: 4rem;
 }
 
 .drivers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
     margin-top: 4rem;
 }
 
@@ -407,6 +451,7 @@ body {
     overflow: hidden;
     text-transform: uppercase;
     letter-spacing: 1px;
+    touch-action: manipulation;
 }
 
 .support-btn:hover {
@@ -438,6 +483,136 @@ body {
     transform: translateY(-50%) scale(1);
 }
 
+/* Betting Section */
+.betting {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    color: #fff;
+}
+
+.betting .section-title {
+    color: #fff;
+}
+
+.betting .section-subtitle {
+    color: #ccc;
+}
+
+.betting-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.betting-card {
+    background: linear-gradient(135deg, #3a3a3a 0%, #2d2d2d 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.betting-card:hover {
+    transform: translateY(-10px);
+}
+
+.betting-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.betting-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.weather-overlay {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.betting-content {
+    padding: 2rem;
+}
+
+.betting-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ff6b35;
+}
+
+.betting-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #ccc;
+}
+
+.betting-odds {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.odds-option {
+    flex: 1;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.odds-option:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+}
+
+.odds-label {
+    display: block;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.odds-value {
+    display: block;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.weather-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #444;
+}
+
+.weather-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
 /* Experts Section */
 .experts {
     padding: 6rem 0;
@@ -455,7 +630,7 @@ body {
 
 .experts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 3rem;
     margin-top: 4rem;
 }
@@ -558,13 +733,14 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background: #ff6b35;
     color: #fff;
     border-radius: 50%;
     text-decoration: none;
     transition: all 0.3s ease;
+    font-size: 1.2rem;
 }
 
 .social-link:hover {
@@ -580,10 +756,210 @@ body {
     color: #ccc;
 }
 
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+    color: #ccc;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #ff6b35;
+}
+
+.stream-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.stream-preview {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.stream-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 107, 53, 0.9);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-overlay:hover {
+    background: #ff6b35;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.stream-info {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.stream-info h3 {
+    font-family: 'Orbitron', monospace;
+    margin-bottom: 0.5rem;
+    color: #ff6b35;
+}
+
+.live-indicator {
+    background: #ff0000;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.access-message {
+    text-align: center;
+}
+
+.access-message h3 {
+    font-family: 'Orbitron', monospace;
+    color: #ff6b35;
+    margin-bottom: 1rem;
+}
+
+.quick-support-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.quick-support-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.quick-support-btn.norris {
+    background: linear-gradient(135deg, #ff8c00 0%, #ff6b35 100%);
+    color: #fff;
+}
+
+.quick-support-btn.leclerc {
+    background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+    color: #fff;
+}
+
+.quick-support-btn.verstappen {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    color: #fff;
+}
+
+.quick-support-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.betting-modal-content {
+    max-width: 500px;
+}
+
+.betting-form h3 {
+    font-family: 'Orbitron', monospace;
+    color: #ff6b35;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.confirm-bet-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+}
+
+.confirm-bet-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        padding: 1rem;
         gap: 1rem;
+    }
+    
+    .nav-list.mobile-open {
+        display: flex;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
     }
     
     .hero-stats {
@@ -596,17 +972,28 @@ body {
         gap: 2rem;
     }
     
+    .betting-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
     .experts-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
     
-    .section-title {
-        font-size: 2rem;
+    .stream-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
     
-    .hero-title {
-        font-size: 3rem;
+    .weather-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .betting-odds {
+        flex-direction: column;
     }
 }
 
@@ -616,17 +1003,113 @@ body {
     }
     
     .header-content {
-        flex-direction: column;
-        gap: 1rem;
+        padding: 0.5rem 0;
     }
     
     .logo-text {
         font-size: 1.5rem;
     }
     
-    .nav-list {
-        flex-direction: column;
-        text-align: center;
+    .hero {
+        height: 100vh;
+        padding: 0 1rem;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        padding: 1.5rem;
+        width: 95%;
+    }
+    
+    .quick-support-buttons {
         gap: 0.5rem;
     }
+    
+    .quick-support-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
 }
+
+/* Touch improvements for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .driver-card:hover .card-inner {
+        transform: none;
+    }
+    
+    .driver-card.flipped .card-inner {
+        transform: rotateY(180deg);
+    }
+    
+    .support-btn:hover .btn-text {
+        transform: none;
+    }
+    
+    .support-btn:hover .btn-icon {
+        transform: translateY(-50%) scale(0);
+    }
+}
+
+/* Animation improvements */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.support-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    color: white;
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+    z-index: 10000;
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.support-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
