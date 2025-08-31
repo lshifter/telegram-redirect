@@ -1,251 +1,227 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гран-при Нидерландов 2025 | Формула-1</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Гран-прі Нідерландів 2025 — Зандворт | F1</title>
+  <meta name="description" content="Гран-прі Нідерландів 2025 — офіційні фаворити, події для ставок, експертні прогнози та пряма трансляція (Telegram)." />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1 class="logo-text">F1 <span class="highlight">NETHERLANDS</span></h1>
-                </div>
-                <nav class="nav">
-                    <ul class="nav-list">
-                        <li><a href="#home" class="nav-link">Главная</a></li>
-                        <li><a href="#drivers" class="nav-link">Гонщики</a></li>
-                        <li><a href="#experts" class="nav-link">Эксперты</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+  <header class="site-header" role="banner">
+    <div class="wrap header-inner">
+      <a class="brand" href="#home" aria-label="F1 Netherlands">F1 <span>NETHERLANDS</span></a>
+      <nav class="main-nav" aria-label="Головна навігація">
+        <a href="#drivers">Пілоти</a>
+        <a href="#events">Ставки</a>
+        <a href="#experts">Експерти</a>
+      </nav>
+      <button id="burger" class="burger" aria-expanded="false" aria-controls="main-nav" aria-label="Відкрити меню">☰</button>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="racing-lines"></div>
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="Головний блок">
+      <div class="wrap hero-grid">
+        <div class="hero-left">
+          <h1 class="hero-title">
+            <span>ГРАН-ПРІ</span>
+            <span class="accent">НІДЕРЛАНДІВ</span>
+            <small class="hero-sub">Зандворт — Сьогодні, 29 серпня 2025</small>
+          </h1>
+          <p class="hero-lead">Трасa з банкінгами, мінлива погода та шалена підтримка трибун. Ми офіційно обрали трьох фаворитів цього заїзду — підтримай свого!</p>
+          <div class="hero-ctas">
+            <a class="btn primary" href="#drivers">Підтримати фаворита</a>
+            <a class="btn" href="#events">Події / Ставки</a>
+          </div>
+          <ul class="hero-stats" aria-hidden="true">
+            <li><strong>72</strong><span>Круги</span></li>
+            <li><strong>4.259 км</strong><span>Довжина кола</span></li>
+            <li><strong>306.587 км</strong><span>Загальна дистанція</span></li>
+          </ul>
         </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="title-line">ГРАН-ПРИ</span>
-                    <span class="title-line highlight">НИДЕРЛАНДОВ</span>
-                    <span class="title-line">2025</span>
-                </h1>
-                <p class="hero-subtitle">Зандворт • 29 августа • День Гонки</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">72</span>
-                        <span class="stat-label">Кругов</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">4.259</span>
-                        <span class="stat-label">км</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">306.587</span>
-                        <span class="stat-label">км общая дистанция</span>
-                    </div>
-                </div>
-            </div>
+
+        <div class="hero-right" aria-hidden="true">
+          <div class="track-wrap" title="Схема траси">
+            <svg viewBox="0 0 800 420" class="track-svg" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                  <stop offset="0" stop-color="#ff9d3b"/>
+                  <stop offset="1" stop-color="#ff3b7a"/>
+                </linearGradient>
+              </defs>
+              <path id="trackPath" d="M60,230 C120,100 260,60 380,110 C520,160 680,120 740,220 C700,300 600,340 500,320 C380,300 340,360 240,380 C140,400 80,320 60,230 Z" stroke="url(#g1)" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <div class="decor-car" aria-hidden="true">🏎️</div>
+          </div>
         </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
-        </div>
+      </div>
     </section>
 
-    <!-- Drivers Section -->
-    <section id="drivers" class="drivers">
-        <div class="container">
-            <h2 class="section-title">Топ-3 Кандидата на Победу</h2>
-            <p class="section-subtitle">Официально выбранные фавориты сегодняшней гонки</p>
-            
-            <div class="drivers-grid">
-                <!-- Lando Norris -->
-                <div class="driver-card" data-driver="norris">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="driver-image">
-                                <img src="https://media.formula1.com/image/upload/v1712849107/content/dam/fom-website/drivers/2024Drivers/norris.png" alt="Lando Norris">
-                                <div class="driver-number">4</div>
-                            </div>
-                            <div class="driver-info">
-                                <h3 class="driver-name">Lando Norris</h3>
-                                <p class="driver-team">McLaren</p>
-                                <div class="driver-stats">
-                                    <div class="stat-item">
-                                        <span class="stat-value">8</span>
-                                        <span class="stat-label">Побед</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-value">15</span>
-                                        <span class="stat-label">Подиумов</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <div class="card-content">
-                                <h4>Почему Ландо?</h4>
-                                <p>Невероятная скорость на технических трассах и отличное понимание настроек автомобиля делают его главным претендентом на победу в Зандворте.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="support-btn" onclick="supportDriver('norris')">
-                        <span class="btn-text">Поддержать</span>
-                        <span class="btn-icon"><i class="fas fa-heart"></i></span>
-                    </button>
-                </div>
+    <!-- DRIVERS -->
+    <section id="drivers" class="drivers" aria-label="Пілоти">
+      <div class="wrap">
+        <h2 class="section-title">Офіційно обрані кандидати</h2>
+        <p class="section-sub">Наші фаворити на Гран-прі Нідерландів — сьогодні</p>
 
-                <!-- Charles Leclerc -->
-                <div class="driver-card" data-driver="leclerc">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="driver-image">
-                                <img src="https://tse2.mm.bing.net/th/id/OIP.yQWX0hP-dAJ3RtTfEOH9WAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Charles Leclerc">
-                                <div class="driver-number">16</div>
-                            </div>
-                            <div class="driver-info">
-                                <h3 class="driver-name">Charles Leclerc</h3>
-                                <p class="driver-team">Ferrari</p>
-                                <div class="driver-stats">
-                                    <div class="stat-item">
-                                        <span class="stat-value">6</span>
-                                        <span class="stat-label">Побед</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-value">22</span>
-                                        <span class="stat-label">Подиумов</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <div class="card-content">
-                                <h4>Почему Шарль?</h4>
-                                <p>Мастерство в квалификации и агрессивный стиль гонки в сочетании с улучшенной Ferrari делают его серьезным соперником.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="support-btn" onclick="supportDriver('leclerc')">
-                        <span class="btn-text">Поддержать</span>
-                        <span class="btn-icon"><i class="fas fa-heart"></i></span>
-                    </button>
-                </div>
-
-                <!-- Max Verstappen -->
-                <div class="driver-card" data-driver="verstappen">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="driver-image">
-                                <img src="https://tse1.mm.bing.net/th/id/OIP.emwMfoHyoVkrQQAf82ewAAHaGm?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Max Verstappen">
-                                <div class="driver-number">1</div>
-                            </div>
-                            <div class="driver-info">
-                                <h3 class="driver-name">Max Verstappen</h3>
-                                <p class="driver-team">Red Bull Racing</p>
-                                <div class="driver-stats">
-                                    <div class="stat-item">
-                                        <span class="stat-value">12</span>
-                                        <span class="stat-label">Побед</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-value">18</span>
-                                        <span class="stat-label">Подиумов</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-back">
-                            <div class="card-content">
-                                <h4>Почему Макс?</h4>
-                                <p>Домашняя трасса, поддержка болельщиков и непревзойденное мастерство в сложных условиях - идеальная комбинация для победы.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="support-btn" onclick="supportDriver('verstappen')">
-                        <span class="btn-text">Поддержать</span>
-                        <span class="btn-icon"><i class="fas fa-heart"></i></span>
-                    </button>
-                </div>
+        <div class="cards-grid" id="cardsGrid">
+          <!-- CARD: Lando Norris -->
+          <article class="card" data-driver="norris" aria-labelledby="norrisName">
+            <div class="card-media">
+              <img src="https://media.formula1.com/image/upload/v1712849107/content/dam/fom-website/drivers/2024Drivers/norris.png" alt="Lando Norris">
             </div>
+            <div class="card-body">
+              <h3 id="norrisName">Lando Norris</h3>
+              <p class="team">McLaren</p>
+              <p class="desc">Неймовірна швидкість у середніх секціях та відмінні рестарти. Чудово почувається на технічних ділянках.</p>
+              <div class="card-actions">
+                <a class="support-btn" href="https://gamehub.g2afse.com/click?pid=3751&offer_id=822" target="_blank" rel="noopener noreferrer" data-driver="norris">Підтримати</a>
+                <span class="support-count">Підтримок: <strong data-count="norris">0</strong></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD: Charles Leclerc -->
+          <article class="card" data-driver="leclerc" aria-labelledby="leclercName">
+            <div class="card-media">
+              <img src="https://tse2.mm.bing.net/th/id/OIP.yQWX0hP-dAJ3RtTfEOH9WAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Charles Leclerc">
+            </div>
+            <div class="card-body">
+              <h3 id="leclercName">Charles Leclerc</h3>
+              <p class="team">Ferrari</p>
+              <p class="desc">Майстер кваліфікацій та агресивної гонки. Якщо Ferrari тримає темп, він буде у боротьбі за подіум.</p>
+              <div class="card-actions">
+                <a class="support-btn" href="https://gamehub.g2afse.com/click?pid=3751&offer_id=822" target="_blank" rel="noopener noreferrer" data-driver="leclerc">Підтримати</a>
+                <span class="support-count">Підтримок: <strong data-count="leclerc">0</strong></span>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD: Max Verstappen -->
+          <article class="card" data-driver="verstappen" aria-labelledby="verstappenName">
+            <div class="card-media">
+              <img src="https://tse1.mm.bing.net/th/id/OIP.emwMfoHyoVkrQQAf82ewAAHaGm?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Max Verstappen">
+            </div>
+            <div class="card-body">
+              <h3 id="verstappenName">Max Verstappen</h3>
+              <p class="team">Red Bull Racing</p>
+              <p class="desc">Домашній трек, шалена підтримка вболівальників та стабільний темп — головний претендент на перемогу.</p>
+              <div class="card-actions">
+                <a class="support-btn" href="https://gamehub.g2afse.com/click?pid=3751&offer_id=822" target="_blank" rel="noopener noreferrer" data-driver="verstappen">Підтримати</a>
+                <span class="support-count">Підтримок: <strong data-count="verstappen">0</strong></span>
+              </div>
+            </div>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Expert Opinions Section -->
-    <section id="experts" class="experts">
-        <div class="container">
-            <h2 class="section-title">Экспертное Мнение</h2>
-            <p class="section-subtitle">Что говорят профессионалы о сегодняшней гонке</p>
-            
-            <div class="experts-grid">
-                <div class="expert-card">
-                    <div class="expert-avatar">
-                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" alt="Анна Петрова">
-                    </div>
-                    <div class="expert-content">
-                        <h3 class="expert-name">Анна Петрова</h3>
-                        <p class="expert-title">Автоспортивный Аналитик</p>
-                        <blockquote class="expert-quote">
-                            "Сегодняшняя гонка в Зандворте обещает быть одной из самых непредсказуемых в сезоне. Трасса требует от пилотов максимальной концентрации и точности, особенно в скоростных секциях. Ключевым фактором станет управление шинами, учитывая абразивность покрытия и возможные изменения погодных условий."
-                        </blockquote>
-                    </div>
-                </div>
+    <!-- EVENTS / BETS -->
+    <section id="events" class="events" aria-label="Події для ставок">
+      <div class="wrap">
+        <h2 class="section-title">Події для ставок</h2>
+        <p class="section-sub">Увага: дощ збільшує шанси на виїзд Safety Car — обирай прогноз</p>
 
-                <div class="expert-card">
-                    <div class="expert-avatar">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Иван Смирнов">
-                    </div>
-                    <div class="expert-content">
-                        <h3 class="expert-name">Иван Смирнов</h3>
-                        <p class="expert-title">Бывший Гонщик F1</p>
-                        <blockquote class="expert-quote">
-                            "Зандворт – это вызов для каждого пилота. Здесь нет места ошибкам. Особенно интересными будут первые круги, где борьба за позицию может привести к неожиданным инцидентам. Важно, как пилоты справятся с давлением толпы, ведь голландские болельщики создают невероятную атмосферу."
-                        </blockquote>
-                    </div>
-                </div>
+        <div class="event-card">
+          <div class="event-media">
+            <img src="https://images.unsplash.com/photo-1494216928456-ae75fd966279?q=80&w=2000&auto=format&fit=crop" alt="Дощ на трасі">
+            <span class="event-badge">Дощ / Safety Car</span>
+          </div>
+          <div class="event-body">
+            <h3>Чи буде Safety Car?</h3>
+            <p class="muted">У вологих умовах інциденти частіше призводять до виходу автомобіля безпеки. Зробіть прогноз та зафіксуйте ставку.</p>
+            <div class="event-actions">
+              <label class="radio"><input type="radio" name="safetycar" value="yes"> Так</label>
+              <label class="radio"><input type="radio" name="safetycar" value="no"> Ні</label>
+              <button class="btn primary" id="placeBet">Зафіксувати ставку</button>
             </div>
+            <p id="betStatus" class="hint">Ставка ще не зафіксована.</p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>F1 Netherlands 2025</h3>
-                    <p>Официальный сайт Гран-при Нидерландов</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Быстрые ссылки</h4>
-                    <ul>
-                        <li><a href="#home">Главная</a></li>
-                        <li><a href="#drivers">Гонщики</a></li>
-                        <li><a href="#experts">Эксперты</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Следите за нами</h4>
-                    <div class="social-links">
-                        <a href="https://t.me/+fytZa5svbPgyMzJi" class="social-link"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Formula 1 Netherlands Grand Prix. Все права защищены.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- EXPERTS -->
+    <section id="experts" class="experts" aria-label="Експертна думка">
+      <div class="wrap">
+        <h2 class="section-title">Експертна думка</h2>
+        <p class="section-sub">Живі, детальні та по суті коментарі від професіоналів</p>
 
-    <script src="script.js"></script>
+        <div class="experts-grid">
+          <article class="expert">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="Марія Воронова">
+            <div class="expert-body">
+              <h4>Марія Воронова</h4>
+              <p class="pos">Автоспортивний аналітик</p>
+              <blockquote>
+                «Зандворт — траса, де значення має кожен відсоток зчеплення. Якщо почнеться дощ, перемогу вирішать команди, що швидше й точніше адаптують тиск шин і стратегію піт-стопів. Рестарт після Safety Car — ключовий момент для першої трійки.»
+              </blockquote>
+            </div>
+          </article>
+
+          <article class="expert">
+            <!-- Олег Смирнов (з наданого URL) -->
+            <img src="https://tse2.mm.bing.net/th/id/OIP.uaRUj8GO_ZfSXHk1Nq4hlgHaJo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Олег Смирнов">
+            <div class="expert-body">
+              <h4>Олег Смирнов</h4>
+              <p class="pos">Колишній пілот / тренер</p>
+              <blockquote>
+                «Перші 10 кіл — це завжди найризикованіший відрізок, особливо при змінній погоді. Пілоти, котрі вміють берегти шину на вході у поворот і максимально точно заходити на гальмування — отримають перевагу. Не варто недооцінювати роль піт-стоп-команди під час сейфти-кара.»
+              </blockquote>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap footer-inner">
+      <div>
+        <strong>F1 Netherlands 2025</strong>
+        <div class="muted">Офіційний лендинг • Прогнози, ставки, трансляція</div>
+      </div>
+      <div class="footer-actions">
+        <a class="tg" href="https://t.me/+fytZa5svbPgyMzJi" target="_blank" rel="noopener noreferrer" aria-label="Telegram">Перейти в Telegram</a>
+        <div class="copyright">© 2025</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating live button -->
+  <div class="live-fab">
+    <button id="openLive" class="fab primary" aria-haspopup="dialog" aria-controls="liveModal">Пряма трансляція</button>
+  </div>
+
+  <!-- Live modal -->
+  <div id="liveModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="liveTitle" hidden>
+    <div class="modal-card" role="document">
+      <div class="modal-head">
+        <h3 id="liveTitle">Пряма трансляція (Telegram)</h3>
+        <button id="closeLive" class="btn-ghost" aria-label="Закрити">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="teaser">
+          <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=2000&auto=format&fit=crop" alt="Стоп-кадр">
+          <div class="play-overlay">
+            <button id="playStream" class="play-btn" aria-label="Перейти до трансляції">►</button>
+          </div>
+        </div>
+        <div id="gateMsg" class="gate">Доступ закрито. Підтримай будь-якого пілота або підтверди ставку в розділі «Події», щоб відкрити трансляцію.</div>
+        <div id="unlockMsg" class="gate ok" hidden>Доступ відкрито! Натисни ▶ ще раз, щоб перейти в Telegram.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
 
 
