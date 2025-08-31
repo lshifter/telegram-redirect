@@ -1,7 +1,3 @@
-// Global variables
-let currentBet = null;
-let hasSupported = false;
-
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -12,14 +8,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
-            
-            // Close mobile menu if open
-            const navList = document.querySelector(".nav-list");
-            const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-            if (navList && navList.classList.contains("mobile-open")) {
-                navList.classList.remove("mobile-open");
-                mobileMenuBtn.classList.remove("active");
-            }
         }
     });
 });
@@ -34,50 +22,18 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Mobile menu toggle
-function toggleMobileMenu() {
-    const navList = document.querySelector('.nav-list');
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    
-    navList.classList.toggle('mobile-open');
-    menuBtn.classList.toggle('active');
-}
-
-// Support driver function with improved mobile handling
+// Support driver function
 function supportDriver(driverName) {
-    // Prevent double-clicking
-    if (hasSupported) return;
-    hasSupported = true;
-    
     // Create floating hearts animation
     createFloatingHearts();
     
     // Show support message
     showSupportMessage(driverName);
     
-    // Mark as supported for live stream access
-    localStorage.setItem('hasSupported', 'true');
-    localStorage.setItem('supportedDriver', driverName);
-    
-    // Redirect to support link after animation with proper mobile handling
+    // Redirect to support link after animation
     setTimeout(() => {
-        // Use window.open for better mobile compatibility
-        const link = 'https://gamehub.g2afse.com/click?pid=3751&offer_id=822';
-        
-        // For mobile devices, use location.href for better compatibility
-        if (isMobileDevice()) {
-            window.location.href = link;
-        } else {
-            window.open(link, '_blank', 'noopener,noreferrer');
-        }
-        hasSupported = false;
+        window.open('https://gamehub.g2afse.com/click?pid=3751&offer_id=822', '_blank');
     }, 1500);
-}
-
-// Detect mobile device
-function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-           (window.innerWidth <= 768);
 }
 
 // Create floating hearts animation
@@ -120,6 +76,51 @@ function createFloatingHearts() {
     }, 4000);
 }
 
+// Add CSS for floating animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    .support-message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+        color: white;
+        padding: 2rem 3rem;
+        border-radius: 20px;
+        font-family: 'Orbitron', monospace;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+        z-index: 10000;
+        animation: popIn 0.5s ease-out;
+    }
+    
+    @keyframes popIn {
+        0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+    }
+`;
+document.head.appendChild(style);
+
 // Show support message
 function showSupportMessage(driverName) {
     const driverNames = {
@@ -147,104 +148,6 @@ function showSupportMessage(driverName) {
     }, 1000);
 }
 
-// Live stream modal functions
-function showLiveStream() {
-    const modal = document.getElementById('liveStreamModal');
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeLiveStream() {
-    const modal = document.getElementById('liveStreamModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Betting functions
-function placeBet(eventType, option) {
-    currentBet = {
-        type: eventType,
-        option: option,
-        odds: option === 'yes' ? 1.85 : 2.10
-    };
-    
-    showBettingModal();
-}
-
-function showBettingModal() {
-    const modal = document.getElementById('bettingModal');
-    const details = document.getElementById('bettingDetails');
-    
-    const eventNames = {
-        'safety-car': 'Выход Сейфти-Кара'
-    };
-    
-    const optionNames = {
-        'yes': 'ДА',
-        'no': 'НЕТ'
-    };
-    
-    details.innerHTML = `
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <h4 style="color: #ff6b35; margin-bottom: 1rem;">${eventNames[currentBet.type]}</h4>
-            <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">
-                Ваш выбор: <strong>${optionNames[currentBet.option]}</strong>
-            </div>
-            <div style="font-size: 1.5rem; color: #ff6b35;">
-                Коэффициент: <strong>${currentBet.odds}</strong>
-            </div>
-        </div>
-    `;
-    
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-function closeBettingModal() {
-    const modal = document.getElementById('bettingModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-function confirmBet() {
-    // Close betting modal
-    closeBettingModal();
-    
-    // Show success message
-    showBetConfirmation();
-    
-    // Mark as supported for live stream access
-    localStorage.setItem('hasSupported', 'true');
-    localStorage.setItem('supportType', 'bet');
-    
-    // Redirect to betting link
-        if (isMobileDevice()) {
-            window.location.href = link;
-        } else {
-            window.open(link, "_blank", "noopener,noreferrer");
-        }
-}
-
-function showBetConfirmation() {
-    const message = document.createElement('div');
-    message.className = 'support-message';
-    message.innerHTML = `
-        <div>🎯 Ставка принята!</div>
-        <div style="font-size: 1.2rem; margin-top: 0.5rem;">
-            Удачи в игре!
-        </div>
-    `;
-    
-    document.body.appendChild(message);
-    
-    setTimeout(() => {
-        message.style.animation = 'popIn 0.5s ease-out reverse';
-        setTimeout(() => {
-            message.remove();
-        }, 500);
-    }, 1500);
-}
-
 // Intersection Observer for animations
 const observerOptions = {
     threshold: 0.1,
@@ -259,52 +162,56 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Touch handling for mobile devices
-function handleTouchInteractions() {
-    if (isMobileDevice()) {
-        // Handle driver card flips on mobile
-        document.querySelectorAll('.driver-card').forEach(card => {
-            card.addEventListener('click', function() {
-                this.classList.toggle('flipped');
-            });
-        });
-        
-        // Improve button touch targets
-        document.querySelectorAll('.support-btn, .odds-option, .quick-support-btn').forEach(btn => {
-            btn.style.minHeight = '44px';
-            btn.style.minWidth = '44px';
-        });
-    }
-}
-
-// Initialize when DOM is loaded
+// Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.driver-card, .expert-card, .betting-card, .section-title');
+    const animateElements = document.querySelectorAll('.driver-card, .expert-card, .section-title');
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(50px)';
         observer.observe(el);
     });
+});
+
+// Add fadeInUp animation
+const fadeInUpStyle = document.createElement('style');
+fadeInUpStyle.textContent = `
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+document.head.appendChild(fadeInUpStyle);
+
+// Parallax effect for hero section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    const racingLines = document.querySelector('.racing-lines');
     
-    // Initialize touch interactions
-    handleTouchInteractions();
+    if (hero && racingLines) {
+        const rate = scrolled * -0.5;
+        hero.style.transform = `translateY(${rate}px)`;
+        racingLines.style.transform = `translateX(${-100 + scrolled * 0.1}px)`;
+    }
+});
+
+// Driver card hover effects
+document.querySelectorAll('.driver-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'scale(1.05)';
+        card.style.transition = 'transform 0.3s ease';
+    });
     
-    // Create particles
-    createParticles();
-    
-    // Add ripple effect to buttons
-    addRippleEffect();
-    
-    // Check if user has already supported
-    checkSupportStatus();
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'scale(1)';
+    });
 });
 
 // Add particle effect to hero section
 function createParticles() {
     const hero = document.querySelector('.hero');
-    if (!hero) return;
-    
     const particlesContainer = document.createElement('div');
     particlesContainer.style.cssText = `
         position: absolute;
@@ -333,9 +240,70 @@ function createParticles() {
     }
 }
 
-// Add ripple effect to buttons
-function addRippleEffect() {
-    document.querySelectorAll('.support-btn, .odds-option, .quick-support-btn, .confirm-bet-btn').forEach(button => {
+// Add twinkle animation
+const twinkleStyle = document.createElement('style');
+twinkleStyle.textContent = `
+    @keyframes twinkle {
+        0%, 100% { opacity: 0; transform: scale(0); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+`;
+document.head.appendChild(twinkleStyle);
+
+// Initialize particles when page loads
+document.addEventListener('DOMContentLoaded', createParticles);
+
+// Add racing sound effect (optional)
+function playRacingSound() {
+    // This would play a racing sound effect if audio file is available
+    // const audio = new Audio('racing-sound.mp3');
+    // audio.play().catch(e => console.log('Audio play failed:', e));
+}
+
+// Countdown timer (if race hasn't started)
+function updateCountdown() {
+    const raceTime = new Date();
+    raceTime.setHours(15, 0, 0, 0); // Assuming 3 PM race time
+    
+    const now = new Date();
+    const timeLeft = raceTime - now;
+    
+    if (timeLeft > 0) {
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        const countdownElement = document.querySelector('.countdown');
+        if (countdownElement) {
+            countdownElement.textContent = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+    }
+}
+
+// Update countdown every second
+setInterval(updateCountdown, 1000);
+
+// Add loading animation
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.remove();
+        }, 500);
+    }
+});
+
+// Mobile menu toggle (if needed)
+function toggleMobileMenu() {
+    const nav = document.querySelector('.nav');
+    nav.classList.toggle('mobile-open');
+}
+
+// Add click handlers for better UX
+document.addEventListener('DOMContentLoaded', () => {
+    // Add ripple effect to buttons
+    document.querySelectorAll('.support-btn').forEach(button => {
         button.addEventListener('click', function(e) {
             const ripple = document.createElement('span');
             const rect = this.getBoundingClientRect();
@@ -363,149 +331,21 @@ function addRippleEffect() {
             }, 600);
         });
     });
-}
+});
 
-// Check support status for live stream access
-function checkSupportStatus() {
-    const hasSupported = localStorage.getItem('hasSupported');
-    if (hasSupported === 'true') {
-        // User has already supported, could modify UI accordingly
-        console.log('User has already supported');
-    }
-}
-
-// Parallax effect for hero section (disabled on mobile for performance)
-if (!isMobileDevice()) {
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        const racingLines = document.querySelector('.racing-lines');
-        
-        if (hero && racingLines) {
-            const rate = scrolled * -0.5;
-            hero.style.transform = `translateY(${rate}px)`;
-            racingLines.style.transform = `translateX(${-100 + scrolled * 0.1}px)`;
+// Add ripple animation
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(2);
+            opacity: 0;
         }
-    });
-}
-
-// Close modals when clicking outside
-window.addEventListener('click', (e) => {
-    const liveStreamModal = document.getElementById('liveStreamModal');
-    const bettingModal = document.getElementById('bettingModal');
-    
-    if (e.target === liveStreamModal) {
-        closeLiveStream();
     }
     
-    if (e.target === bettingModal) {
-        closeBettingModal();
+    .support-btn {
+        position: relative;
+        overflow: hidden;
     }
-});
-
-// Keyboard navigation for accessibility
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeLiveStream();
-        closeBettingModal();
-    }
-});
-
-// Prevent zoom on double tap for iOS
-document.addEventListener('touchend', (e) => {
-    const now = (new Date()).getTime();
-    if (now - lastTouchEnd <= 300) {
-        e.preventDefault();
-    }
-    lastTouchEnd = now;
-}, false);
-
-let lastTouchEnd = 0;
-
-// Performance optimization: Debounce scroll events
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Apply debouncing to scroll events
-const debouncedScrollHandler = debounce(() => {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(0, 0, 0, 0.98)';
-    } else {
-        header.style.background = 'rgba(0, 0, 0, 0.95)';
-    }
-}, 10);
-
-window.addEventListener('scroll', debouncedScrollHandler);
-
-// Lazy loading for images
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => imageObserver.observe(img));
-}
-
-// Initialize lazy loading
-document.addEventListener('DOMContentLoaded', lazyLoadImages);
-
-// Service Worker registration for PWA capabilities (optional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
-
-// Error handling for failed image loads
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('img').forEach(img => {
-        img.addEventListener('error', function() {
-            this.style.display = 'none';
-            console.log('Failed to load image:', this.src);
-        });
-    });
-});
-
-// Preload critical resources
-function preloadCriticalResources() {
-    const criticalImages = [
-        'https://media.formula1.com/image/upload/v1712849107/content/dam/fom-website/drivers/2024Drivers/norris.png',
-        '/home/ubuntu/upload/search_images/HY60pFtjD10r.jpeg',
-        '/home/ubuntu/upload/search_images/uwXFf5RzsCq8.png'
-    ];
-    
-    criticalImages.forEach(src => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = src;
-        document.head.appendChild(link);
-    });
-}
-
-// Initialize preloading
-document.addEventListener('DOMContentLoaded', preloadCriticalResources);
+`;
+document.head.appendChild(rippleStyle);
