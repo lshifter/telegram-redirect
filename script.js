@@ -1,4 +1,4 @@
-/ Global variables
+// Global variables
 let currentBet = null;
 let hasSupported = false;
 
@@ -218,17 +218,11 @@ function confirmBet() {
     localStorage.setItem('supportType', 'bet');
     
     // Redirect to betting link
-    setTime    setTimeout(() => {
-        const link = 'https://gamehub.g2afse.com/click?pid=3751&offer_id=822';
-        
         if (isMobileDevice()) {
             window.location.href = link;
         } else {
-            window.open(link, '_blank', 'noopener,noreferrer');
+            window.open(link, "_blank", "noopener,noreferrer");
         }
-    }, 2000);oopener,noreferrer');
-        // }
-    }, 2000);
 }
 
 function showBetConfirmation() {
