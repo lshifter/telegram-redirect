@@ -67,14 +67,31 @@ body {
 .main-section {
     height: 100vh;
     position: relative;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     background-image: 
-        radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.2) 0%, transparent 50%);
+    overflow: hidden;
+}
+
+.main-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+    animation: pulse-background 10s infinite alternate;
+}
+
+@keyframes pulse-background {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.2); opacity: 0.8; }
 }
 
 .video-container {
@@ -199,10 +216,16 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    animation: pulse-button 2s infinite alternate;
+}
+
+@keyframes pulse-button {
+    0% { transform: scale(1); box-shadow: 0 8px 30px rgba(0, 255, 136, 0.4); }
+    100% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(0, 255, 136, 0.6); }
 }
 
 .play-button::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -246,6 +269,12 @@ body {
     font-size: 14px;
     font-weight: 700;
     box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    animation: pulse-live 1.5s infinite alternate;
+}
+
+@keyframes pulse-live {
+    0% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); }
+    100% { transform: scale(1.05); box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5); }
 }
 
 .live-dot {
@@ -308,11 +337,29 @@ body {
 }
 
 .modal-header {
-    background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%); /* Red */
     padding: 30px;
     text-align: center;
-    color: #000;
+    color: #fff;
     position: relative;
+}
+
+.ggbet-logo {
+    color: #fff;
+}
+
+.access-info i {
+    color: #FF0000;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%); /* Red */
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.3);
+}
+
+.cta-button:hover {
+    box-shadow: 0 12px 35px rgba(255, 0, 0, 0.4);
 }
 
 .modal-header h2 {
