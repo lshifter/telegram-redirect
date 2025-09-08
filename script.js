@@ -1,176 +1,214 @@
-// Конфіг: посилання на Telegram live
-const TELEGRAM_LIVE = 'https://t.me/+fytZa5svbPgyMzJi';
+// DOM Elements
+const playButton = document.getElementById('playButton');
+const modal = document.getElementById('modal');
+const closeModal = document.getElementById('closeModal');
 
-// Прості селектори
-const $ = (sel, ctx = document) => ctx.querySelector(sel);
-const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
-const store = window.localStorage;
-
-// Анімація траси + декоративний болід
-(function initTrack(){
-  const path = $('#trackPath');
-  if(path){
-    const len = path.getTotalLength();
-    path.style.strokeDasharray = len;
-    path.style.strokeDashoffset = len;
-    // програвання малювання
-    requestAnimationFrame(()=> setTimeout(()=> path.style.strokeDashoffset = '0', 120));
-  }
-  const car = document.querySelector('.decor-car');
-  if(car){
-    car.animate([
-      { transform: 'translateY(0) rotate(-6deg)' },
-      { transform: 'translateY(-8px) rotate(6deg)' },
-      { transform: 'translateY(0) rotate(-6deg)' }
-    ], { duration: 3800, iterations: Infinity, easing: 'ease-in-out' });
-  }
-})();
-
-// Mobile menu toggle
-(function mobileMenu(){
-  const burger = $('#burger');
-  const nav = $('.main-nav');
-  if(!burger || !nav) return;
-  burger.addEventListener('click', () => {
-    const open = getComputedStyle(nav).display !== 'none';
-    if(open){
-      nav.style.display = 'none';
-      burger.setAttribute('aria-expanded', 'false');
-    } else {
-      nav.style.display = 'flex';
-      nav.style.flexDirection = 'column';
-      nav.style.position = 'absolute';
-      nav.style.top = '60px';
-      nav.style.right = '12px';
-      nav.style.background = 'linear-gradient(180deg, rgba(3,6,12,0.95), rgba(3,6,12,0.98))';
-      nav.style.padding = '10px';
-      nav.style.borderRadius = '10px';
-      burger.setAttribute('aria-expanded', 'true');
-    }
-  });
-})();
-
-// Подрахунок підтримок — localStorage
-(function supportButtons(){
-  const drivers = ['norris','leclerc','verstappen'];
-  drivers.forEach(id => {
-    const key = 'support_'+id;
-    const cnt = parseInt(store.getItem(key) || '0', 10);
-    const el = document.querySelector(`[data-count="${id}"]`);
-    if(el) el.textContent = cnt;
-  });
-
-  $$('.support-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      // невелика анімація
-      btn.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 220 });
-
-      // update count
-      const id = btn.getAttribute('data-driver') || 'unknown';
-      const key = 'support_' + id;
-      const prev = parseInt(store.getItem(key) || '0', 10);
-      store.setItem(key, String(prev + 1));
-      const el = document.querySelector(`[data-count="${id}"]`);
-      if(el) el.textContent = prev + 1;
-
-      // unlock stream flag
-      store.setItem('unlocked', '1');
-
-      showToast('Підтримка зарахована ✔');
-      // note: link opens in new tab thanks to target="_blank"
-    });
-  });
-})();
-
-// Подія: зафіксувати ставку (Safety Car)
-(function bets(){
-  const placeBtn = $('#placeBet');
-  const status = $('#betStatus');
-  if(!placeBtn) return;
-  placeBtn.addEventListener('click', () => {
-    const sel = document.querySelector('input[name="safetycar"]:checked');
-    if(!sel){ showToast('Оберіть варіант: Так або Ні'); return; }
-    store.setItem('bet_safetycar', sel.value);
-    store.setItem('unlocked', '1'); // також відкриває доступ до ефіру
-    status.textContent = 'Ставка збережена: ' + (sel.value === 'yes' ? 'очікується Safety Car' : 'без Safety Car');
-    showToast('Ставка підтверджена ✔');
-  });
-})();
-
-// Модальне вікно / трансляція
-(function liveModal(){
-  const openBtn = $('#openLive');
-  const modal = $('#liveModal');
-  const closeBtn = $('#closeLive');
-  const playBtn = $('#playStream');
-  const gateMsg = $('#gateMsg');
-  const unlockMsg = $('#unlockMsg');
-
-  function unlocked(){
-    return store.getItem('unlocked') === '1' || !!store.getItem('bet_safetycar');
-  }
-  function updateGateUI(){
-    if(unlocked()){
-      gateMsg.hidden = true;
-      unlockMsg.hidden = false;
-    } else {
-      gateMsg.hidden = false;
-      unlockMsg.hidden = true;
-    }
-  }
-
-  if(!openBtn || !modal) return;
-  openBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    updateGateUI();
-    modal.hidden = false;
-    modal.classList.add('active');
+// Modal functionality
+function openModal() {
+    modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
-  });
-  closeBtn.addEventListener('click', () => {
-    modal.hidden = true;
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  });
-  modal.addEventListener('click', (e) => {
-    if(e.target === modal){
-      modal.hidden = true;
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
-  playBtn.addEventListener('click', () => {
-    if(unlocked()){
-      // перехід у Telegram
-      window.open(TELEGRAM_LIVE, '_blank', 'noopener');
-    } else {
-      showToast('Підтримайте пілота або підтвердіть ставку, щоб відкрити ефір.');
-    }
-  });
-})();
-
-// Тости — прості повідомлення внизу
-function showToast(text, duration = 2400){
-  const node = document.createElement('div');
-  node.textContent = text;
-  node.setAttribute('role','status');
-  Object.assign(node.style, {
-    position: 'fixed', left: '50%', transform: 'translateX(-50%)', bottom: '18px',
-    background: 'rgba(0,0,0,0.78)', color: '#fff', padding: '10px 14px', borderRadius: '10px', zIndex: 9999,
-    fontWeight: 700, border: '1px solid rgba(255,255,255,0.06)'
-  });
-  document.body.appendChild(node);
-  setTimeout(() => { node.style.transition = 'opacity .3s'; node.style.opacity = '0'; setTimeout(()=> node.remove(), 300); }, duration);
+    
+    // Add entrance animation
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.style.transform = 'translateY(-50px)';
+    modalContent.style.opacity = '0';
+    
+    setTimeout(() => {
+        modalContent.style.transform = 'translateY(0)';
+        modalContent.style.opacity = '1';
+    }, 10);
 }
 
-// Accessibility: ESC closes modal
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape'){
-    const modal = document.querySelector('.modal.active') || $('#liveModal');
-    if(modal && !modal.hidden){
-      modal.hidden = true;
-      document.body.style.overflow = '';
+function closeModalFunc() {
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.style.transform = 'translateY(-50px)';
+    modalContent.style.opacity = '0';
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+// Event listeners
+playButton.addEventListener('click', openModal);
+closeModal.addEventListener('click', closeModalFunc);
+
+// Close modal when clicking outside
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        closeModalFunc();
     }
-  }
 });
+
+// Close modal with Escape key
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.style.display === 'block') {
+        closeModalFunc();
+    }
+});
+
+// Play button hover effect
+playButton.addEventListener('mouseenter', () => {
+    playButton.style.transform = 'scale(1.1)';
+});
+
+playButton.addEventListener('mouseleave', () => {
+    playButton.style.transform = 'scale(1)';
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Add loading animation to CTA button
+const ctaButton = document.querySelector('.cta-button');
+if (ctaButton) {
+    ctaButton.addEventListener('click', function(e) {
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Переход...';
+        this.style.pointerEvents = 'none';
+        
+        // Reset after 2 seconds (in case user comes back)
+        setTimeout(() => {
+            this.innerHTML = originalText;
+            this.style.pointerEvents = 'auto';
+        }, 2000);
+    });
+}
+
+// Add parallax effect to main section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const mainSection = document.querySelector('.main-section');
+    if (mainSection) {
+        mainSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+});
+
+// Add countdown timer (optional enhancement)
+function updateCountdown() {
+    const matchDate = new Date('2024-09-09T20:00:00');
+    const now = new Date();
+    const timeDiff = matchDate - now;
+    
+    if (timeDiff > 0) {
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+        
+        // You can add a countdown display element if needed
+        console.log(`До матча: ${days}д ${hours}ч ${minutes}м ${seconds}с`);
+    }
+}
+
+// Update countdown every second
+setInterval(updateCountdown, 1000);
+
+// Add entrance animations when page loads
+window.addEventListener('load', () => {
+    const elements = document.querySelectorAll('.team, .play-button-container, .live-indicator');
+    elements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            element.style.transition = 'all 0.6s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }, index * 200);
+    });
+});
+
+// Add ripple effect to buttons
+function createRipple(event) {
+    const button = event.currentTarget;
+    const circle = document.createElement('span');
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
+    
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+    circle.classList.add('ripple');
+    
+    const ripple = button.getElementsByClassName('ripple')[0];
+    if (ripple) {
+        ripple.remove();
+    }
+    
+    button.appendChild(circle);
+}
+
+// Add ripple CSS
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 600ms linear;
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+// Apply ripple effect to buttons
+document.querySelectorAll('.play-button, .cta-button').forEach(button => {
+    button.addEventListener('click', createRipple);
+});
+
+// Add floating animation to play button
+const playButtonFloat = () => {
+    playButton.style.animation = 'float 3s ease-in-out infinite';
+};
+
+// Add float animation CSS
+const floatStyle = document.createElement('style');
+floatStyle.textContent = `
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+`;
+document.head.appendChild(floatStyle);
+
+// Start floating animation
+setTimeout(playButtonFloat, 1000);
+
+// Add performance optimization
+const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};
+
+// Debounce scroll events
+window.addEventListener('scroll', debounce(() => {
+    // Scroll-based animations can be added here
+}, 10));
 
