@@ -1,225 +1,151 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Гран-прі Нідерландів 2025 — Зандворт | F1</title>
-  <meta name="description" content="Гран-прі Нідерландів 2025 — офіційні фаворити, події для ставок, експертні прогнози та пряма трансляція (Telegram)." />
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Украина vs Азербайджан - Прямая трансляция</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <div class="wrap header-inner">
-      <a class="brand" href="#home" aria-label="F1 Netherlands">F1 <span>NETHERLANDS</span></a>
-      <nav class="main-nav" aria-label="Головна навігація">
-        <a href="#drivers">Пілоти</a>
-        <a href="#events">Ставки</a>
-        <a href="#experts">Експерти</a>
-      </nav>
-      <button id="burger" class="burger" aria-expanded="false" aria-controls="main-nav" aria-label="Відкрити меню">☰</button>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <span>LIVE FOOTBALL</span>
+                </div>
+                <div class="match-info">
+                    <span class="match-date">9 сентября 2024</span>
+                    <span class="match-time">20:00</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Video Section -->
+    <main class="main-section">
+        <div class="video-container">
+            <div class="video-overlay">
+                <div class="match-title">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="flag ukraine-flag"></div>
+                            <span>УКРАИНА</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <div class="flag azerbaijan-flag"></div>
+                            <span>АЗЕРБАЙДЖАН</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="play-button-container">
+                    <button class="play-button" id="playButton">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="play-text">Нажмите для просмотра трансляции</div>
+                </div>
+
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span>ПРЯМОЙ ЭФИР</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <h2>Доступ к трансляции</h2>
+                <div class="ggbet-logo">GG.BET</div>
+            </div>
+            <div class="modal-body">
+                <div class="access-info">
+                    <i class="fas fa-lock"></i>
+                    <h3>Для получения доступа к трансляции</h3>
+                    <p>Сделайте ставку на матч <strong>Украина - Азербайджан</strong> на сайте официального партнера</p>
+                </div>
+                
+                <div class="bonus-info">
+                    <div class="bonus-badge">
+                        <i class="fas fa-gift"></i>
+                        <span>БОНУС</span>
+                    </div>
+                    <div class="bonus-text">
+                        <h4>500 ГРН за первый депозит</h4>
+                        <p>При ставке на матч Украина - Азербайджан</p>
+                    </div>
+                </div>
+
+                <a href="https://gamehub.g2afse.com/click?pid=3751&offer_id=822" class="cta-button" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
+                    Перейти на GG.BET
+                </a>
+
+                <div class="terms">
+                    <p><small>* Условия акции действуют согласно правилам букмекерской конторы</small></p>
+                </div>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero" aria-label="Головний блок">
-      <div class="wrap hero-grid">
-        <div class="hero-left">
-          <h1 class="hero-title">
-            <span>ГРАН-ПРІ</span>
-            <span class="accent">НІДЕРЛАНДІВ</span>
-            <small class="hero-sub">Зандворт — Сьогодні, 29 серпня 2025</small>
-          </h1>
-          <p class="hero-lead">Трасa з банкінгами, мінлива погода та шалена підтримка трибун. Ми офіційно обрали трьох фаворитів цього заїзду — підтримай свого!</p>
-          <div class="hero-ctas">
-            <a class="btn primary" href="#drivers">Підтримати фаворита</a>
-            <a class="btn" href="#events">Події / Ставки</a>
-          </div>
-          <ul class="hero-stats" aria-hidden="true">
-            <li><strong>72</strong><span>Круги</span></li>
-            <li><strong>4.259 км</strong><span>Довжина кола</span></li>
-            <li><strong>306.587 км</strong><span>Загальна дистанція</span></li>
-          </ul>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>О трансляции</h4>
+                    <ul>
+                        <li><a href="#">Качество HD</a></li>
+                        <li><a href="#">Многоязычные комментарии</a></li>
+                        <li><a href="#">Статистика матча</a></li>
+                        <li><a href="#">Повторы голов</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Партнеры</h4>
+                    <ul>
+                        <li><a href="#">GG.BET</a></li>
+                        <li><a href="#">UEFA</a></li>
+                        <li><a href="#">Федерация футбола Украины</a></li>
+                        <li><a href="#">Федерация футбола Азербайджана</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Поддержка</h4>
+                    <ul>
+                        <li><a href="#">Техническая поддержка</a></li>
+                        <li><a href="#">Часто задаваемые вопросы</a></li>
+                        <li><a href="#">Обратная связь</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Следите за нами</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Live Football. Все права защищены. | <a href="#">Политика конфиденциальности</a> | <a href="#">Условия использования</a></p>
+                <p><small>Ответственная игра. Играйте разумно. 18+</small></p>
+            </div>
         </div>
+    </footer>
 
-        <div class="hero-right" aria-hidden="true">
-          <div class="track-wrap" title="Схема траси">
-            <svg viewBox="0 0 800 420" class="track-svg" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <linearGradient id="g1" x1="0" x2="1">
-                  <stop offset="0" stop-color="#ff9d3b"/>
-                  <stop offset="1" stop-color="#ff3b7a"/>
-                </linearGradient>
-              </defs>
-              <path id="trackPath" d="M60,230 C120,100 260,60 380,110 C520,160 680,120 740,220 C700,300 600,340 500,320 C380,300 340,360 240,380 C140,400 80,320 60,230 Z" stroke="url(#g1)" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-            <div class="decor-car" aria-hidden="true">🏎️</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DRIVERS -->
-    <section id="drivers" class="drivers" aria-label="Пілоти">
-      <div class="wrap">
-        <h2 class="section-title">Офіційно обрані кандидати</h2>
-        <p class="section-sub">Наші фаворити на Гран-прі Нідерландів — сьогодні</p>
-
-        <div class="cards-grid" id="cardsGrid">
-          <!-- CARD: Lando Norris -->
-          <article class="card" data-driver="norris" aria-labelledby="norrisName">
-            <div class="card-media">
-              <img src="https://media.formula1.com/image/upload/v1712849107/content/dam/fom-website/drivers/2024Drivers/norris.png" alt="Lando Norris">
-            </div>
-            <div class="card-body">
-              <h3 id="norrisName">Lando Norris</h3>
-              <p class="team">McLaren</p>
-              <p class="desc">Неймовірна швидкість у середніх секціях та відмінні рестарти. Чудово почувається на технічних ділянках.</p>
-              <div class="card-actions">
-                <a class="support-btn" href="https://gamehub.g2afse.com/click?pid=3751&offer_id=822" target="_blank" rel="noopener noreferrer" data-driver="norris">Підтримати</a>
-                <span class="support-count">Підтримок: <strong data-count="norris">0</strong></span>
-              </div>
-            </div>
-          </article>
-
-          <!-- CARD: Charles Leclerc -->
-          <article class="card" data-driver="leclerc" aria-labelledby="leclercName">
-            <div class="card-media">
-              <img src="https://tse2.mm.bing.net/th/id/OIP.yQWX0hP-dAJ3RtTfEOH9WAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Charles Leclerc">
-            </div>
-            <div class="card-body">
-              <h3 id="leclercName">Charles Leclerc</h3>
-              <p class="team">Ferrari</p>
-              <p class="desc">Майстер кваліфікацій та агресивної гонки. Якщо Ferrari тримає темп, він буде у боротьбі за подіум.</p>
-              <div class="card-actions">
-                <a class="support-btn" href="https://gamehub.g2afse.com/click?pid=3751&offer_id=822" target="_blank" rel="noopener noreferrer" data-driver="leclerc">Підтримати</a>
-                <span class="support-count">Підтримок: <strong data-count="leclerc">0</strong></span>
-              </div>
-            </div>
-          </article>
-
-          <!-- CARD: Max Verstappen -->
-          <article class="card" data-driver="verstappen" aria-labelledby="verstappenName">
-            <div class="card-media">
-              <img src="https://tse1.mm.bing.net/th/id/OIP.emwMfoHyoVkrQQAf82ewAAHaGm?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Max Verstappen">
-            </div>
-            <div class="card-body">
-              <h3 id="verstappenName">Max Verstappen</h3>
-              <p class="team">Red Bull Racing</p>
-              <p class="desc">Домашній трек, шалена підтримка вболівальників та стабільний темп — головний претендент на перемогу.</p>
-              <div class="card-actions">
-                <a class="support-btn" href="https://gamehub.g2afse.com/click?pid=3751&offer_id=822" target="_blank" rel="noopener noreferrer" data-driver="verstappen">Підтримати</a>
-                <span class="support-count">Підтримок: <strong data-count="verstappen">0</strong></span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- EVENTS / BETS -->
-    <section id="events" class="events" aria-label="Події для ставок">
-      <div class="wrap">
-        <h2 class="section-title">Події для ставок</h2>
-        <p class="section-sub">Увага: дощ збільшує шанси на виїзд Safety Car — обирай прогноз</p>
-
-        <div class="event-card">
-          <div class="event-media">
-            <img src="https://images.unsplash.com/photo-1494216928456-ae75fd966279?q=80&w=2000&auto=format&fit=crop" alt="Дощ на трасі">
-            <span class="event-badge">Дощ / Safety Car</span>
-          </div>
-          <div class="event-body">
-            <h3>Чи буде Safety Car?</h3>
-            <p class="muted">У вологих умовах інциденти частіше призводять до виходу автомобіля безпеки. Зробіть прогноз та зафіксуйте ставку.</p>
-            <div class="event-actions">
-              <label class="radio"><input type="radio" name="safetycar" value="yes"> Так</label>
-              <label class="radio"><input type="radio" name="safetycar" value="no"> Ні</label>
-              <button class="btn primary" id="placeBet">Зафіксувати ставку</button>
-            </div>
-            <p id="betStatus" class="hint">Ставка ще не зафіксована.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERTS -->
-    <section id="experts" class="experts" aria-label="Експертна думка">
-      <div class="wrap">
-        <h2 class="section-title">Експертна думка</h2>
-        <p class="section-sub">Живі, детальні та по суті коментарі від професіоналів</p>
-
-        <div class="experts-grid">
-          <article class="expert">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" alt="Марія Воронова">
-            <div class="expert-body">
-              <h4>Марія Воронова</h4>
-              <p class="pos">Автоспортивний аналітик</p>
-              <blockquote>
-                «Зандворт — траса, де значення має кожен відсоток зчеплення. Якщо почнеться дощ, перемогу вирішать команди, що швидше й точніше адаптують тиск шин і стратегію піт-стопів. Рестарт після Safety Car — ключовий момент для першої трійки.»
-              </blockquote>
-            </div>
-          </article>
-
-          <article class="expert">
-            <!-- Олег Смирнов (з наданого URL) -->
-            <img src="https://tse2.mm.bing.net/th/id/OIP.uaRUj8GO_ZfSXHk1Nq4hlgHaJo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Олег Смирнов">
-            <div class="expert-body">
-              <h4>Олег Смирнов</h4>
-              <p class="pos">Колишній пілот / тренер</p>
-              <blockquote>
-                «Перші 10 кіл — це завжди найризикованіший відрізок, особливо при змінній погоді. Пілоти, котрі вміють берегти шину на вході у поворот і максимально точно заходити на гальмування — отримають перевагу. Не варто недооцінювати роль піт-стоп-команди під час сейфти-кара.»
-              </blockquote>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="wrap footer-inner">
-      <div>
-        <strong>F1 Netherlands 2025</strong>
-        <div class="muted">Офіційний лендинг • Прогнози, ставки, трансляція</div>
-      </div>
-      <div class="footer-actions">
-        <a class="tg" href="https://t.me/+fytZa5svbPgyMzJi" target="_blank" rel="noopener noreferrer" aria-label="Telegram">Перейти в Telegram</a>
-        <div class="copyright">© 2025</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Floating live button -->
-  <div class="live-fab">
-    <button id="openLive" class="fab primary" aria-haspopup="dialog" aria-controls="liveModal">Пряма трансляція</button>
-  </div>
-
-  <!-- Live modal -->
-  <div id="liveModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="liveTitle" hidden>
-    <div class="modal-card" role="document">
-      <div class="modal-head">
-        <h3 id="liveTitle">Пряма трансляція (Telegram)</h3>
-        <button id="closeLive" class="btn-ghost" aria-label="Закрити">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="teaser">
-          <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=2000&auto=format&fit=crop" alt="Стоп-кадр">
-          <div class="play-overlay">
-            <button id="playStream" class="play-btn" aria-label="Перейти до трансляції">►</button>
-          </div>
-        </div>
-        <div id="gateMsg" class="gate">Доступ закрито. Підтримай будь-якого пілота або підтверди ставку в розділі «Події», щоб відкрити трансляцію.</div>
-        <div id="unlockMsg" class="gate ok" hidden>Доступ відкрито! Натисни ▶ ще раз, щоб перейти в Telegram.</div>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 
