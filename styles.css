@@ -67,17 +67,23 @@ body {
 .main-section {
     height: 100vh;
     position: relative;
-    background: url('football_stop_frame.png') center/cover no-repeat;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.08) 0%, transparent 50%);
 }
 
 .video-container {
     width: 100%;
     height: 100%;
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="grass" patternUnits="userSpaceOnUse" width="40" height="40"><rect width="40" height="40" fill="%23228B22"/><path d="M0 40L40 0M-10 10L10 -10M30 50L50 30" stroke="%23006400" stroke-width="1" opacity="0.3"/></pattern></defs><rect width="1200" height="800" fill="url(%23grass)"/><rect x="100" y="100" width="1000" height="600" fill="none" stroke="%23ffffff" stroke-width="3"/><circle cx="600" cy="400" r="100" fill="none" stroke="%23ffffff" stroke-width="3"/><line x1="600" y1="100" x2="600" y2="700" stroke="%23ffffff" stroke-width="3"/><rect x="100" y="250" width="150" height="300" fill="none" stroke="%23ffffff" stroke-width="3"/><rect x="950" y="250" width="150" height="300" fill="none" stroke="%23ffffff" stroke-width="3"/></svg>') center/cover;
 }
 
 .video-overlay {
@@ -122,6 +128,17 @@ body {
 
 .ukraine-flag {
     background: linear-gradient(to bottom, #005BBB 50%, #FFD500 50%);
+    position: relative;
+}
+
+.ukraine-flag::after {
+    content: '🇺🇦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    opacity: 0.8;
 }
 
 .azerbaijan-flag {
@@ -130,13 +147,13 @@ body {
 }
 
 .azerbaijan-flag::after {
-    content: '☪';
+    content: '🇦🇿';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
-    font-size: 20px;
+    font-size: 24px;
+    opacity: 0.8;
 }
 
 .team span {
@@ -560,4 +577,41 @@ body {
         font-size: 12px;
         padding: 6px 12px;
     }
+}
+
+
+/* Float animation for play button */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Additional responsive improvements */
+@media (max-width: 320px) {
+    .logo {
+        font-size: 18px;
+    }
+    
+    .match-time {
+        font-size: 16px;
+    }
+    
+    .team span {
+        font-size: 16px;
+    }
+    
+    .vs {
+        font-size: 24px;
+    }
+    
+    .play-button {
+        width: 70px;
+        height: 70px;
+        font-size: 20px;
+    }
+    
+    .play-text {
+        font-size: 14px;
+    }
+}
 
